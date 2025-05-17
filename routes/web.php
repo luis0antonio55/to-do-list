@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\TaskViewController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/tasks', [TaskViewController::class, 'index'])->name('tasks.index');
+    Route::get('/tasks/create', [TaskViewController::class, 'create'])->name('tasks.create');
+});
 
 Route::get('/', function () {
     return Inertia::render('welcome');
